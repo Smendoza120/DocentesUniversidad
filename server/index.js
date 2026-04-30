@@ -20,7 +20,7 @@ app.get('/docentes', (req, res) => {
          return res.status(404).json({ error: 'Docente no encontrado' });
       }
       // 200 implicito
-      res.json(results[0]);
+      res.json(results);
    });
 });
 
@@ -29,19 +29,19 @@ app.get('/docentes/:id', (req, res) => {
    const sql = 'SELECT * FROM docentes WHERE id = ?';
 
    // db.query(sql, { id }, (err, results) => {
-   db.query(sql, [ id ], (err, results) => {
+   db.query(sql, [id], (err, results) => {
       if (err) {
          // 500 = error interno del servidor
          return res.status(500).json({ error: 'error al obtener el docentes' });
       }
       // 200 implicito
-      res.json(results);
+      res.json(results[0]);
    });
 });
 
 app.post('/docente', (req, res) => {
    const { nombre, correo, telefono, titulo, area_academica, dedicacion, anios_experiencia } = req.body;
-   if (!nombre?.trim() || !correo?.trim() || !telefono?.trim() || !titulo?.trim() || !area_academica?.trim() || !dedicacion?.trim() || !anios_experiencia?.trim()) {
+   if (!nombre?.trim() || !correo?.trim() || !telefono?.trim() || !titulo?.trim() || !area_academica?.trim() || !dedicacion?.trim() || !anios_experiencia) {
 
       return res.status(400).json({ error: 'Todos los campos son requeridos' });
    }
@@ -50,7 +50,7 @@ app.post('/docente', (req, res) => {
 
    if (Number.isNaN(anios) || anios < 0) {
 
-      return res.status(400).json({ error: 'anios de experiencia invalidos' });
+      return res.status(400).json({ error: 'anios de experiencia del docente invalidos' });
    }
 
    const sql = 'INSERT INTO docentes (nombre, correo, telefono, titulo, area_academica, dedicacion, anios_experiencia) VALUES (?,?,?,?,?,?,?)';

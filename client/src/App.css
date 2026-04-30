@@ -1,0 +1,208 @@
+:root {
+  --color-primary: #1e90ff; /* Azul más brillante */
+  --color-primary-dark: #104278; /* Azul más oscuro */
+  --color-secondary: #778899; /* Gris azulado */
+  --color-background: #1e212b; /* Fondo oscuro */
+  --color-surface: #2c3240; /* Superficie de la tarjeta */
+  --color-text: #f0f0f0; /* Texto claro */
+  --color-light-text: #bdbdbd; /* Texto gris claro */
+  --color-border: #444a59; /* Borde oscuro */
+  --color-light-border: #3b4251; /* Borde más claro */
+  --color-form-bg: #2c3240; /* Fondo del formulario */
+  --color-input-border: #444a59; /* Borde del input */
+  --color-accent-edit: #28a745; /* Verde para editar */
+  --color-accent-edit-dark: #218838; /* Verde oscuro */
+  --color-accent-delete: #dc3545; /* Rojo para eliminar */
+  --color-accent-delete-dark: #c82333; /* Rojo oscuro */
+}
+
+/*
+ * body: lienzo detrás de la tarjeta .App.
+ * flex + min-height centran la tarjeta como un cuadro en la pared.
+ */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--color-background);
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Contenedor principal: ancho máximo para que en monitores anchos no se estire demasiado */
+.App {
+  width: 100%;
+  max-width: 1200px;
+  background-color: var(--color-surface);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  color: var(--color-text);
+}
+
+/* Encabezado: título + subtítulo centrados */
+.app-header {
+  text-align: center;
+}
+
+.app-header h1 {
+  margin: 0 0 8px;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.app-subtitle {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--color-light-text);
+}
+
+/*
+ * .datos: CSS Grid — las cajas se reparten solas en filas según el ancho.
+ * Analogía: estantería que reorganiza los libros cuando achicas la ventana.
+ */
+.datos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  background-color: var(--color-form-bg);
+  border-radius: 10px;
+  border: 1px solid var(--color-light-border);
+}
+
+.datos label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  color: var(--color-light-text);
+}
+
+.datos input {
+  margin-top: 8px;
+  padding: 12px;
+  border: 1px solid var(--color-input-border);
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.2s ease-in-out;
+  background-color: var(--color-form-bg);
+  color: var(--color-text);
+}
+
+/* Al hacer foco (clic o Tab), el borde resalta para accesibilidad visual */
+.datos input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+/* Botón principal: ocupa todo el ancho de la rejilla (de la primera a la última columna) */
+.datos button {
+  grid-column: 1 / -1;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-primary);
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease-in-out,
+    transform 0.1s ease-in-out;
+}
+
+.datos button:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+
+.datos button:active {
+  transform: translateY(0);
+}
+
+/* Si la tabla es más ancha que la pantalla, aparece barra horizontal (móviles) */
+.tabla-container {
+  overflow-x: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.tabla-registros {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.tabla-registros th,
+.tabla-registros td {
+  padding: 15px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tabla-registros th {
+  background-color: var(--color-light-border);
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.tabla-registros td {
+  color: var(--color-light-text);
+}
+
+/* Franjas alternas: lectura más fácil (como libreta rayada) */
+.tabla-registros tbody tr:nth-child(even) {
+  background-color: var(--color-form-bg);
+}
+
+.tabla-registros tbody tr:hover {
+  background-color: var(--color-border);
+}
+
+/* Última columna = celda de acciones; flex pone Editar y Eliminar en fila con espacio */
+.tabla-registros td:last-child {
+  display: flex;
+  gap: 10px;
+}
+
+.tabla-registros .btn-editar,
+.tabla-registros .btn-eliminar {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.tabla-registros .btn-editar {
+  background-color: var(--color-accent-edit);
+  color: white;
+}
+
+.tabla-registros .btn-editar:hover {
+  background-color: var(--color-accent-edit-dark);
+}
+
+.tabla-registros .btn-eliminar {
+  background-color: var(--color-accent-delete);
+  color: white;
+}
+
+.tabla-registros .btn-eliminar:hover {
+  background-color: var(--color-accent-delete-dark);
+}
+
+/* En pantallas estrechas, la tarjeta usa todo el ancho y quita sombra exagerada */
+@media (max-width: 768px) {
+  .App {
+    padding: 20px;
+    box-shadow: none;
+    border-radius: 0;
+  }
+}
