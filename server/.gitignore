@@ -1,2 +1,11 @@
+# Initial Configs
 /node_modules
 .vscode/
+
+# pnpm
+pnpm-debug.log
+.pnpm-store
+
+# Lockfiles de otros gestores 
+package-lock.json
+yarn.lock

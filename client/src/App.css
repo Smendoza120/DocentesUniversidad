@@ -29,6 +29,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  padding: 0;
 }
 
 /* Contenedor principal: ancho máximo para que en monitores anchos no se estire demasiado */

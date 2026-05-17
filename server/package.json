@@ -1,7 +1,11 @@
 {
-    "scripts": {
-    "star": "nodes index.js",
-    "dev": "nodemon index.js"
+  "name": "backend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
     "cors": "^2.8.6",

@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^9.0.1",
+    "@mui/material": "^9.0.1",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
@@ -16,7 +20,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "preinstall": "npx only-allow pnpm"
   },
   "eslintConfig": {
     "extends": [
@@ -35,5 +40,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "pnpm": {
+    "overrides": {
+      "@babel/plugin-transform-modules-systemjs": "^7.24.0",
+      "nth-check": "^2.1.1",
+      "postcss": "^8.4.31",
+      "serialize-javascript": "^6.0.2",
+      "underscore": "^1.13.7",
+      "webpack-dev-server": "^4.15.1"
+    }
+  },
+  "devDependencies": {
+    "eslint-config-react-app": "^7.0.1"
   }
 }
